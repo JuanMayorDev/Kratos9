@@ -11,6 +11,8 @@ namespace pokoi {
         public float angles_to_rotate;
         public Vector3 flow_direction;
 
+        public float max_director_speed_magnitude;
+
         float speed = 1f;        
 
         public Vector3 director_speed;
@@ -27,8 +29,13 @@ namespace pokoi {
         void Update()
         {
             
-            ship_transform.position += ( director_speed + flow_direction )* Time.deltaTime;
-           
+            ship_transform.position += ( director_speed * speed )* Time.deltaTime;
+
+            director_speed += flow_direction * Time.deltaTime;
+            director_speed = director_speed.magnitude > 0 ? director_speed - director_speed * Time.deltaTime * 0.001f : Vector3.zero;
+
+            director_speed = Vector3.ClampMagnitude(director_speed, max_director_speed_magnitude);
+
         }
 
         public void RotateShip(SideToRotate _s, float angles)
@@ -49,7 +56,8 @@ namespace pokoi {
 
         public void UpdateDirectorVector(Vector3 _v)
         {
-            director_speed += _v  * speed;
+            director_speed += _v  ;
+
         }
 
         public void IncreaseSpeed(float _s)
@@ -69,7 +77,7 @@ namespace pokoi {
 
         public void DecreaseSpeed(float _s)
         {
-            UpdateDirectorVector(-ship_transform.forward * _s * 2f);          
+            UpdateDirectorVector(-ship_transform.forward * _s * 5f);          
         }
 
         public void RecieveImpact(Vector3 _v)
