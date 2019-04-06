@@ -55,11 +55,20 @@ namespace Kratos9 {
            switch (_s)
             {
                 case SideToRotate.left:
+<<<<<<< HEAD
 
+=======
+                    director_speed = Quaternion.AngleAxis(-angles, Vector3.up) * director_speed;
+>>>>>>> parent of 22552a2... ManyDicks
                     ship_transform.eulerAngles = new Vector3(ship_transform.eulerAngles.x, ship_transform.eulerAngles.y - angles, ship_transform.eulerAngles.z);
                     break;
 
                 case SideToRotate.right:
+<<<<<<< HEAD
+=======
+
+                    director_speed = Quaternion.AngleAxis(+angles, Vector3.up) * director_speed;
+>>>>>>> parent of 22552a2... ManyDicks
 
                     ship_transform.eulerAngles = new Vector3(ship_transform.eulerAngles.x, ship_transform.eulerAngles.y + angles, ship_transform.eulerAngles.z);
                     break;

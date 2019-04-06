@@ -17,7 +17,10 @@ namespace Kratos9
             Kratos9.movement_manager collided_movement_manager       = collided.GetComponent<Kratos9.movement_manager>();
             Kratos9.movement_manager other_collider_movement_manager = contact.otherCollider.transform.parent.GetComponent<Kratos9.movement_manager>();
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 22552a2... ManyDicks
             if (!collided_movement_manager.hitting)
             {
          
