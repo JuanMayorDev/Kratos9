@@ -15,8 +15,9 @@ namespace Kratos9
         public void CalculateImpactForces(Transform collided, ContactPoint contact)
         {
             Kratos9.movement_manager collided_movement_manager       = collided.GetComponent<Kratos9.movement_manager>();
-            Kratos9.movement_manager other_collider_movement_manager = contact.otherCollider.transform.parent.GetComponent<Kratos9.movement_manager>();
-
+            Kratos9.movement_manager other_collider_movement_manager = contact.otherCollider.transform.GetComponent<Kratos9.movement_manager>();
+            Kratos9.punch_manager collided_punch_manager             = collided.GetComponent<Kratos9.punch_manager>();
+            Kratos9.punch_manager other_collider_punch_manager       = contact.otherCollider.transform.GetComponent<Kratos9.punch_manager>();
 
             if (!collided_movement_manager.hitting)
             {
@@ -24,9 +25,29 @@ namespace Kratos9
                 if (!other_collider_movement_manager.hitting)
                 {
 
-                    collided_movement_manager.RecieveImpact(contact.normal * (collided_movement_manager.GetSpeed() + other_collider_movement_manager.GetSpeed()));
+                    collided_movement_manager.RecieveImpact(contact.normal * (other_collider_movement_manager.GetDirectorVector().magnitude + collided_movement_manager.GetDirectorVector().magnitude)); //* ((collided_movement_manager.GetDirectorVector() * collided_movement_manager.GetSpeed()).magnitude + (other_collider_movement_manager.GetDirectorVector() * other_collider_movement_manager.GetSpeed()).magnitude));
+                    //collided_movement_manager.RecieveImpact(other_collider_movement_manager.GetDirectorVector() * other_collider_movement_manager.GetSpeed() - collided_movement_manager.GetDirectorVector() * collided_movement_manager.GetSpeed());
+                    //other_collider_movement_manager.RecieveImpact(collided_movement_manager.GetDirectorVector() * collided_movement_manager.GetSpeed() - other_collider_movement_manager.GetDirectorVector() * other_collider_movement_manager.GetSpeed());
+                    other_collider_movement_manager.RecieveImpact(-contact.normal * (other_collider_movement_manager.GetDirectorVector().magnitude + collided_movement_manager.GetDirectorVector().magnitude));
 
-                    other_collider_movement_manager.RecieveImpact(-contact.normal * (collided_movement_manager.GetSpeed() + other_collider_movement_manager.GetSpeed()));
+                    if(collided_movement_manager.GetDirectorVector().magnitude > other_collider_movement_manager.GetDirectorVector().magnitude && !other_collider_punch_manager.punch_ready)
+                    {
+                        other_collider_punch_manager.punch_charge++;
+
+                        if (other_collider_punch_manager.punch_charge >= other_collider_punch_manager.punch_charge_needed)
+                        {
+                            other_collider_punch_manager.punch_ready = true;
+                        }
+                    }
+                    else if(collided_movement_manager.GetDirectorVector().magnitude < other_collider_movement_manager.GetDirectorVector().magnitude && !collided_punch_manager.punch_ready)
+                    {
+                        collided_punch_manager.punch_charge++;
+
+                        if(collided_punch_manager.punch_charge >= collided_punch_manager.punch_charge_needed)
+                        {
+                            collided_punch_manager.punch_ready = true;
+                        }
+                    }
                 }
                 else
                 {

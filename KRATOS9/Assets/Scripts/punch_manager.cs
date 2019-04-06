@@ -8,7 +8,11 @@ namespace Kratos9
     {
 
         movement_manager this_movement_manager;
+
+        public byte punch_charge_needed;
+        public byte punch_charge;
         public float punch_dash_duration;
+        public bool punch_ready;
 
         // Start is called before the first frame update
         void Start()
@@ -23,11 +27,17 @@ namespace Kratos9
         }
 
         public void Punch()
-        {
-            this_movement_manager.hitting = true;
-            this_movement_manager.director_speed = Vector3.zero;
-            this_movement_manager.RecieveImpact(this_movement_manager.ship_transform.forward * this_movement_manager.dash_speed);
-            Invoke("StopPunchEffect", punch_dash_duration);
+        { 
+            if(punch_ready)
+            {
+                this_movement_manager.hitting = true;
+                this_movement_manager.director_speed = Vector3.zero;
+                this_movement_manager.RecieveImpact(this_movement_manager.ship_transform.forward * this_movement_manager.dash_speed);
+                punch_charge = 0;
+                punch_ready = false;
+                Invoke("StopPunchEffect", punch_dash_duration);
+            }
+
         }
 
         public void StopPunchEffect()
@@ -36,10 +46,7 @@ namespace Kratos9
             this_movement_manager.director_speed = Vector3.forward;
             this_movement_manager.current_speed = this_movement_manager.base_speed;
             this_movement_manager.hitting = false;
-
         }
-
-
 
     }
 }

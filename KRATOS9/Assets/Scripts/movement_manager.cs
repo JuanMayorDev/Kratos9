@@ -40,11 +40,11 @@ namespace Kratos9 {
 
             if (!hitting)
             {
-                director_speed = director_speed.magnitude > 0 ? director_speed - director_speed * Time.deltaTime * 0.001f : Vector3.zero;
+                director_speed = director_speed.magnitude > 0 ? director_speed - director_speed * Time.deltaTime * 0.1f : Vector3.zero;
 
                 if(director_speed != flow_direction)
                 {
-                    director_speed += flow_direction;
+                    director_speed += flow_direction * Time.deltaTime;
                 }
                 director_speed = Vector3.ClampMagnitude(director_speed, max_director_speed_magnitude);
             }
@@ -55,11 +55,13 @@ namespace Kratos9 {
            switch (_s)
             {
                 case SideToRotate.left:
-
+                    director_speed = Quaternion.AngleAxis(-angles, Vector3.up) * director_speed;
                     ship_transform.eulerAngles = new Vector3(ship_transform.eulerAngles.x, ship_transform.eulerAngles.y - angles, ship_transform.eulerAngles.z);
                     break;
 
                 case SideToRotate.right:
+
+                    director_speed = Quaternion.AngleAxis(+angles, Vector3.up) * director_speed;
 
                     ship_transform.eulerAngles = new Vector3(ship_transform.eulerAngles.x, ship_transform.eulerAngles.y + angles, ship_transform.eulerAngles.z);
                     break;

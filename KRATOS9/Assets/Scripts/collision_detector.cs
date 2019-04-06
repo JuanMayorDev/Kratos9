@@ -9,11 +9,9 @@ namespace Kratos9
     {
 
         Kratos9.ImpactManager impactManager = new Kratos9.ImpactManager();
-        Transform parent_tr;
 
         private void Start()
         {
-            parent_tr = transform.parent;
         }
 
 
@@ -21,7 +19,7 @@ namespace Kratos9
         {
             if (collision.transform.tag == "Boat1")
             {
-                impactManager.CalculateImpactForces(parent_tr, collision.GetContact(0));
+                impactManager.CalculateImpactForces(transform, collision.GetContact(0));
 
             }
         }
