@@ -44,7 +44,7 @@ namespace Kratos9 {
 
                 if(director_speed != flow_direction)
                 {
-                    director_speed += flow_direction;
+                    director_speed += flow_direction * Time.deltaTime;
                 }
                 director_speed = Vector3.ClampMagnitude(director_speed, max_director_speed_magnitude);
             }

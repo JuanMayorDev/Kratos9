@@ -58,8 +58,8 @@ namespace Kratos9
             float screen_height = Screen.height;
 
             if (this_half == ScreenHalfs.upper_half)
-                player_area  = new Area(new Vector2(screen_width * 0.5f, screen_height * 0.75f), screen_width, screen_height);
-            else player_area = new Area(new Vector2(screen_width * 0.5f, screen_height * 0.25f), screen_width, screen_height);
+                player_area  = new Area(new Vector2(screen_width * 0.5f, screen_height * 0.75f), screen_width, screen_height * 0.5f);
+            else player_area = new Area(new Vector2(screen_width * 0.5f, screen_height * 0.25f), screen_width, screen_height * 0.5f);
         }
 
         // Update is called once per frame
