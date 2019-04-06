@@ -19,6 +19,8 @@ namespace Kratos9 {
         public float base_speed    = 1f;
         public float current_speed = 1f;
 
+        public float lerp_time;
+
         punch_manager this_punch_manager;
 
        
@@ -33,20 +35,19 @@ namespace Kratos9 {
         // Update is called once per frame
         void Update()
         {
+            Debug.DrawLine(ship_transform.position, ship_transform.position + director_speed * 10, Color.blue);
+            ship_transform.position += (director_speed * current_speed) * Time.deltaTime;
+
             if (!hitting)
             {
-                ship_transform.position += (director_speed * base_speed) * Time.deltaTime;
-
-                director_speed += flow_direction * Time.deltaTime;
                 director_speed = director_speed.magnitude > 0 ? director_speed - director_speed * Time.deltaTime * 0.001f : Vector3.zero;
 
+                if(director_speed != flow_direction)
+                {
+                    director_speed += flow_direction;
+                }
                 director_speed = Vector3.ClampMagnitude(director_speed, max_director_speed_magnitude);
             }
-            else
-            {
-                ship_transform.position = Vector3.Lerp(ship_transform.position, ship_transform.position + ship_transform.forward * dash_speed, Time.deltaTime);
-            }
-
         }
 
         public void RotateShip(SideToRotate _s, float angles)

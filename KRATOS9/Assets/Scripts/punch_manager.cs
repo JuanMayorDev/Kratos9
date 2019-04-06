@@ -25,18 +25,21 @@ namespace Kratos9
         public void Punch()
         {
             this_movement_manager.hitting = true;
-            this_movement_manager.current_speed = this_movement_manager.dash_speed;
+            this_movement_manager.director_speed = Vector3.zero;
+            this_movement_manager.RecieveImpact(this_movement_manager.ship_transform.forward * this_movement_manager.dash_speed);
             Invoke("StopPunchEffect", punch_dash_duration);
         }
 
         public void StopPunchEffect()
         {
             CancelInvoke("StopPunchEffect");
-            this_movement_manager.hitting = false;
+            this_movement_manager.director_speed = Vector3.forward;
             this_movement_manager.current_speed = this_movement_manager.base_speed;
+            this_movement_manager.hitting = false;
+
         }
 
-      
+
 
     }
 }

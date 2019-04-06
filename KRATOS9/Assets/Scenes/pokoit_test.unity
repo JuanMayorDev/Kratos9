@@ -367,9 +367,10 @@ MonoBehaviour:
   max_director_speed_magnitude: 20
   director_speed: {x: 0, y: 0, z: 0}
   hitting: 0
-  dash_speed: 300
+  dash_speed: 50
   base_speed: 1
   current_speed: 1
+  lerp_time: 0
 --- !u!114 &425527251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,7 +394,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425527249}
   m_LocalRotation: {x: -0, y: 0.86364424, z: -0, w: -0.5041018}
-  m_LocalPosition: {x: 15.9, y: -0.51, z: 46.3}
+  m_LocalPosition: {x: 13.2, y: -0.51, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 391504312}
@@ -407,7 +408,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425527249}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 119aff3dd4ebc4a4895eadb2ba427bd1, type: 3}
   m_Name: 
@@ -532,7 +533,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665418482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.9, y: -0.51, z: -46.3}
+  m_LocalPosition: {x: 15.9, y: -0.51, z: -39.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2063182696}
@@ -557,9 +558,10 @@ MonoBehaviour:
   max_director_speed_magnitude: 20
   director_speed: {x: 0, y: 0, z: 0}
   hitting: 0
-  dash_speed: 300
+  dash_speed: 100
   base_speed: 1
   current_speed: 1
+  lerp_time: 0
 --- !u!114 &665418485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -753,7 +755,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553379014}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 407f4c8d8616cec419fbaa28dc9148a8, type: 3}
   m_Name: 
@@ -812,7 +814,7 @@ MonoBehaviour:
   - {fileID: 425527250}
   min_seconds_to_change_flow: 15
   max_seconds_to_change_flow: 40
-  flow_speed: 1
+  flow_speed: 0.5
 --- !u!4 &1729226392 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: c91aeb401585c304c95a1cf2175b87cf,

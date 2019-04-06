@@ -18,11 +18,35 @@ namespace Kratos9
             Kratos9.movement_manager other_collider_movement_manager = contact.otherCollider.transform.parent.GetComponent<Kratos9.movement_manager>();
 
 
-            if (!collided_movement_manager.hitting) collided_movement_manager.RecieveImpact(contact.normal * (collided_movement_manager.GetSpeed() + other_collider_movement_manager.GetSpeed()));
-            if (!other_collider_movement_manager.hitting) other_collider_movement_manager.RecieveImpact(-contact.normal * (collided_movement_manager.GetSpeed() + other_collider_movement_manager.GetSpeed()));            
+            if (!collided_movement_manager.hitting)
+            {
+         
+                if (!other_collider_movement_manager.hitting)
+                {
 
-            if (collided_movement_manager.hitting) collided_movement_manager.GetComponent<Kratos9.punch_manager>().StopPunchEffect();
-            if(other_collider_movement_manager.hitting) other_collider_movement_manager.GetComponent<Kratos9.punch_manager>().StopPunchEffect();
+                    collided_movement_manager.RecieveImpact(contact.normal * (collided_movement_manager.GetSpeed() + other_collider_movement_manager.GetSpeed()));
+
+                    other_collider_movement_manager.RecieveImpact(-contact.normal * (collided_movement_manager.GetSpeed() + other_collider_movement_manager.GetSpeed()));
+                }
+                else
+                {
+                    collided_movement_manager.RecieveImpact(contact.normal * (collided_movement_manager.dash_speed + other_collider_movement_manager.GetSpeed()));
+                    other_collider_movement_manager.GetComponent<Kratos9.punch_manager>().StopPunchEffect();
+                }
+            }
+            else{
+                collided_movement_manager.GetComponent<Kratos9.punch_manager>().StopPunchEffect();
+
+                if (!other_collider_movement_manager.hitting)
+                {
+                    other_collider_movement_manager.RecieveImpact(-contact.normal * (collided_movement_manager.dash_speed + other_collider_movement_manager.GetSpeed()));
+                }
+                else
+                {
+                    other_collider_movement_manager.GetComponent<Kratos9.punch_manager>().StopPunchEffect();
+                }
+            }
+
         }
 
     }
