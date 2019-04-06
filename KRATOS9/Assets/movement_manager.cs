@@ -9,10 +9,11 @@ namespace pokoi {
         public Transform ship_transform;
 
         public float angles_to_rotate;
+        public Vector3 flow_direction;
 
-        float speed = 1f;
+        float speed = 1f;        
 
-        Vector3 director_speed;
+        public Vector3 director_speed;
 
         public enum SideToRotate {left, right }
 
@@ -24,8 +25,10 @@ namespace pokoi {
 
         // Update is called once per frame
         void Update()
-        {            
-            ship_transform.position += director_speed * Time.deltaTime;
+        {
+            
+            ship_transform.position += ( director_speed + flow_direction )* Time.deltaTime;
+           
         }
 
         public void RotateShip(SideToRotate _s, float angles)
@@ -46,19 +49,34 @@ namespace pokoi {
 
         public void UpdateDirectorVector(Vector3 _v)
         {
-            director_speed = _v * speed;
+            director_speed += _v  * speed;
         }
 
         public void IncreaseSpeed(float _s)
         {
-            speed += _s;
+             UpdateDirectorVector(ship_transform.forward * _s);            
+        }
+
+        public Vector3 GetDirectorVector()
+        {
+            return director_speed;
+        }
+
+        public float GetSpeed()
+        {
+            return speed;
         }
 
         public void DecreaseSpeed(float _s)
         {
-            speed -= _s;
+            UpdateDirectorVector(-ship_transform.forward * _s * 2f);          
         }
 
+        public void RecieveImpact(Vector3 _v)
+        {
+            director_speed += _v;
+        }
 
+       
     }
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 namespace pokoi
 {
-
-
     public class input_manager : MonoBehaviour
     {
         const float MINIMUM_SWIPE_DISTANCE = 10f;
@@ -16,7 +14,7 @@ namespace pokoi
             float height;
             Vector2 min_extents;
             Vector2 max_extents;
-            Vector2 center;
+            public Vector2 center;
 
             public Area(Vector2 _c, float _w, float _h)
             {
@@ -51,10 +49,12 @@ namespace pokoi
         Vector2 initial_swipe_position;
         Vector2 end_swipe_position;
 
+        bool touched;
+
         // Start is called before the first frame update
         void Start()
         {
-            float screen_width = Screen.width;
+            float screen_width  = Screen.width;
             float screen_height = Screen.height;
 
             if (this_half == ScreenHalfs.upper_half)
@@ -84,25 +84,15 @@ namespace pokoi
                 {
                     Touch touch = Input.GetTouch(iterator);
 
-                    switch (touch.phase)
+                    if (player_area.ContainsPoint(touch.position))
                     {
-                        case TouchPhase.Began:
-                            initial_swipe_position = touch.position;
-                            break;
 
-                        case TouchPhase.Ended:
-                            end_swipe_position     = touch.position;
+                        switch (touch.phase)
+                        {
+                            case TouchPhase.Began: OnInputPressed(touch.position); break;
 
-                            if (CheckSwipe())
-                            {
-                                this_movement_manager.RotateShip(GetTouchSide(end_swipe_position), this_movement_manager.angles_to_rotate);
-                                if (end_swipe_position.y > initial_swipe_position.y) this_movement_manager.DecreaseSpeed(speed_modification);
-                                else this_movement_manager.IncreaseSpeed(speed_modification);
-
-                                this_movement_manager.UpdateDirectorVector(this.this_movement_manager.ship_transform.forward);
-                            }
-
-                            break;
+                            case TouchPhase.Ended: OnInputRelease(touch.position); break;
+                        }
                     }
                 }
 
@@ -111,35 +101,52 @@ namespace pokoi
 
         void ReceiveInputEditor()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                initial_swipe_position = Input.mousePosition;
-            }
-
-            if (Input.GetMouseButtonUp(0))
-            {
-                end_swipe_position = Input.mousePosition;
-
-                if (CheckSwipe())
-                {
-                    this_movement_manager.RotateShip(GetTouchSide(end_swipe_position), this_movement_manager.angles_to_rotate);
-                    if (end_swipe_position.y > initial_swipe_position.y) this_movement_manager.DecreaseSpeed(speed_modification);
-                    else this_movement_manager.IncreaseSpeed(speed_modification);
-
-                    this_movement_manager.UpdateDirectorVector(this.this_movement_manager.ship_transform.forward);
-                }
-            }               
+            if (Input.GetMouseButtonDown(0) && player_area.ContainsPoint(Input.mousePosition)) OnInputPressed(Input.mousePosition);
+            
+            if (Input.GetMouseButtonUp(0))   OnInputRelease(Input.mousePosition);              
             
         }
 
         movement_manager.SideToRotate GetTouchSide(Vector2 point)
         {
-            return point.x < ship_position_in_screen.x ? movement_manager.SideToRotate.left : movement_manager.SideToRotate.right;
+            return point.x < player_area.center.x ? movement_manager.SideToRotate.right : movement_manager.SideToRotate.left;
         }
 
         bool CheckSwipe()
         {
             return Vector2.Distance(initial_swipe_position, end_swipe_position) > MINIMUM_SWIPE_DISTANCE;
+        }
+
+        void OnInputPressed(Vector2 _p)
+        {
+            touched = true;
+            initial_swipe_position = _p;
+        }
+
+        void OnInputRelease(Vector2 _p)
+        {
+            if (touched)
+            {
+                end_swipe_position = _p;
+
+                if (CheckSwipe())
+                {
+                    this_movement_manager.RotateShip(GetTouchSide(end_swipe_position), this_movement_manager.angles_to_rotate);
+                    if (end_swipe_position.y > initial_swipe_position.y)
+                    {
+                        if (this_half == ScreenHalfs.lower_half) this_movement_manager.DecreaseSpeed(speed_modification);
+                        else this_movement_manager.IncreaseSpeed(speed_modification);
+                    }
+                    else
+                    {
+                        if (this_half == ScreenHalfs.lower_half) this_movement_manager.IncreaseSpeed(speed_modification);
+                        else this_movement_manager.DecreaseSpeed(speed_modification);
+                    }
+
+                    this_movement_manager.UpdateDirectorVector(this.this_movement_manager.ship_transform.forward);
+                }
+                touched = false;
+            }
         }
     }
 }
