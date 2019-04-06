@@ -23,11 +23,18 @@ namespace Kratos9 {
 
         punch_manager this_punch_manager;
 
-       
+        public Animator my_anim;
+
+        Quaternion desired_rotation;
+
+        public float rotation_speed;
+
 
         // Start is called before the first frame update
         void Start()
         {
+            desired_rotation = ship_transform.rotation;
+            my_anim = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
             director_speed = ship_transform.forward * base_speed;
             this_punch_manager = GetComponent<punch_manager>();
         }
@@ -48,6 +55,8 @@ namespace Kratos9 {
                 }
                 director_speed = Vector3.ClampMagnitude(director_speed, max_director_speed_magnitude);
             }
+            ship_transform.rotation = Quaternion.Lerp(ship_transform.rotation, desired_rotation, Time.deltaTime * rotation_speed);
+            
         }
 
         public void RotateShip(SideToRotate _s, float angles)
@@ -55,15 +64,20 @@ namespace Kratos9 {
            switch (_s)
             {
                 case SideToRotate.left:
+                    my_anim.SetTrigger("Left");
+
                     director_speed = Quaternion.AngleAxis(-angles, Vector3.up) * director_speed;
-                    ship_transform.eulerAngles = new Vector3(ship_transform.eulerAngles.x, ship_transform.eulerAngles.y - angles, ship_transform.eulerAngles.z);
+                    desired_rotation.eulerAngles = new Vector3(ship_transform.eulerAngles.x, ship_transform.eulerAngles.y - angles, ship_transform.eulerAngles.z);
+                    //ship_transform.eulerAngles = new Vector3(ship_transform.eulerAngles.x, ship_transform.eulerAngles.y - angles, ship_transform.eulerAngles.z);
                     break;
 
                 case SideToRotate.right:
+                    my_anim.SetTrigger("Right");
 
                     director_speed = Quaternion.AngleAxis(+angles, Vector3.up) * director_speed;
+                    desired_rotation.eulerAngles = new Vector3(ship_transform.eulerAngles.x, ship_transform.eulerAngles.y + angles, ship_transform.eulerAngles.z);
 
-                    ship_transform.eulerAngles = new Vector3(ship_transform.eulerAngles.x, ship_transform.eulerAngles.y + angles, ship_transform.eulerAngles.z);
+                    //ship_transform.eulerAngles = new Vector3(ship_transform.eulerAngles.x, ship_transform.eulerAngles.y + angles, ship_transform.eulerAngles.z);
                     break;
             }
         }

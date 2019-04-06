@@ -49,6 +49,7 @@ namespace Kratos9
         Vector2 initial_swipe_position;
         Vector2 end_swipe_position;
 
+
         bool touched;
 
         // Start is called before the first frame update
@@ -109,7 +110,10 @@ namespace Kratos9
 
         movement_manager.SideToRotate GetTouchSide(Vector2 point)
         {
-            return point.x < player_area.center.x ? movement_manager.SideToRotate.right : movement_manager.SideToRotate.left;
+            
+            return this_half == ScreenHalfs.lower_half ? 
+                point.x < player_area.center.x ? movement_manager.SideToRotate.left : movement_manager.SideToRotate.right
+                : point.x > player_area.center.x ? movement_manager.SideToRotate.left : movement_manager.SideToRotate.right;
         }
 
         bool CheckSwipe()

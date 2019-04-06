@@ -30,6 +30,7 @@ namespace Kratos9
         { 
             if(punch_ready)
             {
+                this_movement_manager.my_anim.SetTrigger("Attack");
                 this_movement_manager.hitting = true;
                 this_movement_manager.director_speed = Vector3.zero;
                 this_movement_manager.RecieveImpact(this_movement_manager.ship_transform.forward * this_movement_manager.dash_speed);
