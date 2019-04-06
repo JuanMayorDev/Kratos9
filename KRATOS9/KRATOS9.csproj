@@ -627,6 +627,7 @@
     <Compile Include="Assets\flow_system.cs" />
     <Compile Include="Assets\input_manager.cs" />
     <Compile Include="Assets\movement_manager.cs" />
+    <Compile Include="Assets\punch_manager.cs" />
     <Compile Include="Assets\Scripts\ImpactManager.cs" />
     <Compile Include="Assets\Scripts\SimpleForwardMovement.cs" />
   </ItemGroup>

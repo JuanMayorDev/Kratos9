@@ -60,11 +60,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\collision_detector.cs" />
-    <Compile Include="Assets\flow_system.cs" />
-    <Compile Include="Assets\input_manager.cs" />
-    <Compile Include="Assets\movement_manager.cs" />
+    <Compile Include="Assets\Scripts\CameraBehaviour.cs" />
+    <Compile Include="Assets\Scripts\collision_detector.cs" />
+    <Compile Include="Assets\Scripts\flow_system.cs" />
     <Compile Include="Assets\Scripts\ImpactManager.cs" />
+    <Compile Include="Assets\Scripts\input_manager.cs" />
+    <Compile Include="Assets\Scripts\movement_manager.cs" />
+    <Compile Include="Assets\Scripts\punch_manager.cs" />
     <Compile Include="Assets\Scripts\SimpleForwardMovement.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Usuario/Documents/GitHub/Kratos9/KRATOS9/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

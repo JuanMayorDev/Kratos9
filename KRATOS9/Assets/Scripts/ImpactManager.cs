@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Jota
+namespace Kratos9
 {
     public class ImpactManager
     {
@@ -14,9 +14,15 @@ namespace Jota
         /// <param name="contact"></param>
         public void CalculateImpactForces(Transform collided, ContactPoint contact)
         {
-            collided.GetComponent<pokoi.movement_manager>().RecieveImpact(contact.normal * (collided.GetComponent<pokoi.movement_manager>().GetSpeed() + contact.otherCollider.transform.parent.GetComponent<pokoi.movement_manager>().GetSpeed()));
+            Kratos9.movement_manager collided_movement_manager       = collided.GetComponent<Kratos9.movement_manager>();
+            Kratos9.movement_manager other_collider_movement_manager = contact.otherCollider.transform.parent.GetComponent<Kratos9.movement_manager>();
 
-            contact.otherCollider.transform.parent.GetComponent<pokoi.movement_manager>().RecieveImpact(-contact.normal * (collided.GetComponent<pokoi.movement_manager>().GetSpeed() + collided.GetComponent<pokoi.movement_manager>().GetSpeed()));
+
+            if (!collided_movement_manager.hitting) collided_movement_manager.RecieveImpact(contact.normal * (collided_movement_manager.GetSpeed() + other_collider_movement_manager.GetSpeed()));
+            if (!other_collider_movement_manager.hitting) other_collider_movement_manager.RecieveImpact(-contact.normal * (collided_movement_manager.GetSpeed() + other_collider_movement_manager.GetSpeed()));            
+
+            if (collided_movement_manager.hitting) collided_movement_manager.GetComponent<Kratos9.punch_manager>().StopPunchEffect();
+            if(other_collider_movement_manager.hitting) other_collider_movement_manager.GetComponent<Kratos9.punch_manager>().StopPunchEffect();
         }
 
     }

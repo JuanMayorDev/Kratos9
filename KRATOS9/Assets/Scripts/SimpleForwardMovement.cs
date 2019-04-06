@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Jota
+namespace Kratos9
 {
     public class SimpleForwardMovement : MonoBehaviour
     {

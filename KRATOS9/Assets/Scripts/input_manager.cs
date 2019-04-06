@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace pokoi
+namespace Kratos9
 {
     public class input_manager : MonoBehaviour
     {
