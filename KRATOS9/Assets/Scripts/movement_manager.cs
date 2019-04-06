@@ -64,7 +64,7 @@ namespace Kratos9 {
            switch (_s)
             {
                 case SideToRotate.left:
-<<<<<<< HEAD
+
                     my_anim.SetTrigger("Left");
 
                     director_speed = Quaternion.AngleAxis(-angles, Vector3.up) * director_speed;
@@ -77,16 +77,12 @@ namespace Kratos9 {
 
                     director_speed = Quaternion.AngleAxis(+angles, Vector3.up) * director_speed;
                     desired_rotation.eulerAngles = new Vector3(ship_transform.eulerAngles.x, ship_transform.eulerAngles.y + angles, ship_transform.eulerAngles.z);
-=======
+
 
                     ship_transform.eulerAngles = new Vector3(ship_transform.eulerAngles.x, ship_transform.eulerAngles.y - angles, ship_transform.eulerAngles.z);
                     break;
 
-                case SideToRotate.right:
->>>>>>> parent of 56ca084... dfsdf
-
-                    //ship_transform.eulerAngles = new Vector3(ship_transform.eulerAngles.x, ship_transform.eulerAngles.y + angles, ship_transform.eulerAngles.z);
-                    break;
+              
             }
         }
 

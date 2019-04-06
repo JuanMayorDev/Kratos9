@@ -19,11 +19,8 @@ namespace Kratos9
             Kratos9.punch_manager collided_punch_manager             = collided.GetComponent<Kratos9.punch_manager>();
             Kratos9.punch_manager other_collider_punch_manager       = contact.otherCollider.transform.GetComponent<Kratos9.punch_manager>();
 
-<<<<<<< HEAD
             collided_movement_manager.my_anim.SetTrigger("Hit");
             other_collider_movement_manager.my_anim.SetTrigger("Hit");
-=======
->>>>>>> parent of 56ca084... dfsdf
 
             if (!collided_movement_manager.hitting)
             {

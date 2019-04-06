@@ -27,7 +27,7 @@ namespace Kratos9
         }
 
         public void Punch()
-<<<<<<< HEAD
+
         { 
             if(punch_ready)
             {
@@ -40,13 +40,7 @@ namespace Kratos9
                 Invoke("StopPunchEffect", punch_dash_duration);
             }
 
-=======
-        {
-            this_movement_manager.hitting = true;
-            this_movement_manager.director_speed = Vector3.zero;
-            this_movement_manager.RecieveImpact(this_movement_manager.ship_transform.forward * this_movement_manager.dash_speed);
-            Invoke("StopPunchEffect", punch_dash_duration);
->>>>>>> parent of 56ca084... dfsdf
+
         }
 
         public void StopPunchEffect()
