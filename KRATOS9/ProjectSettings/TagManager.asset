@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Wind
   - Boat1
-  - Death
   layers:
   - Default
   - TransparentFX
