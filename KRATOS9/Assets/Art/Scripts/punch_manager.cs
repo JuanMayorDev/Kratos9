@@ -13,7 +13,6 @@ namespace Kratos9
         public byte punch_charge;
         public float punch_dash_duration;
         public bool punch_ready;
-        public PunchButtonController my_punch_button_controller;
 
         // Start is called before the first frame update
         void Start()
@@ -39,7 +38,6 @@ namespace Kratos9
                 punch_charge = 0;
                 punch_ready = false;
                 Invoke("StopPunchEffect", punch_dash_duration);
-                my_punch_button_controller.ResetFillAmount();
             }
 
 
@@ -51,13 +49,6 @@ namespace Kratos9
             this_movement_manager.director_speed = Vector3.forward;
             this_movement_manager.current_speed = this_movement_manager.base_speed;
             this_movement_manager.hitting = false;
-        }
-
-        public void IncreasePunchCharge(byte _b)
-        {
-            punch_charge += _b;
-            float amount = (float)punch_charge / punch_charge_needed;
-            my_punch_button_controller.UpdateFillAmount(amount);
         }
 
     }

@@ -35,7 +35,7 @@ namespace Kratos9
 
                     if(collided_movement_manager.GetDirectorVector().magnitude > other_collider_movement_manager.GetDirectorVector().magnitude && !other_collider_punch_manager.punch_ready)
                     {
-                        other_collider_punch_manager.IncreasePunchCharge(1);
+                        other_collider_punch_manager.punch_charge++;
 
                         if (other_collider_punch_manager.punch_charge >= other_collider_punch_manager.punch_charge_needed)
                         {
@@ -44,7 +44,7 @@ namespace Kratos9
                     }
                     else if(collided_movement_manager.GetDirectorVector().magnitude < other_collider_movement_manager.GetDirectorVector().magnitude && !collided_punch_manager.punch_ready)
                     {
-                        collided_punch_manager.IncreasePunchCharge(1);
+                        collided_punch_manager.punch_charge++;
 
                         if(collided_punch_manager.punch_charge >= collided_punch_manager.punch_charge_needed)
                         {
