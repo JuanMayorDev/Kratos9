@@ -9,11 +9,13 @@ namespace Kratos9
 
         movement_manager this_movement_manager;
 
-        public byte punch_charge_needed;
-        public byte punch_charge;
+        public float punch_charge_needed;
+        public float punch_charge;
         public float punch_dash_duration;
         public bool punch_ready;
         public PunchButtonController my_punch_button_controller;
+
+
 
         // Start is called before the first frame update
         void Start()
@@ -24,7 +26,13 @@ namespace Kratos9
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space)) Punch();
+            punch_charge += Time.deltaTime * 0.5f;
+            my_punch_button_controller.UpdateFillAmount(punch_charge/punch_charge_needed);
+           if(punch_charge >= punch_charge_needed)
+            {
+                punch_ready = true;
+            }
+
         }
 
         public void Punch()
@@ -56,7 +64,7 @@ namespace Kratos9
         public void IncreasePunchCharge(byte _b)
         {
             punch_charge += _b;
-            float amount = (float)punch_charge / punch_charge_needed;
+            float amount = punch_charge / punch_charge_needed;
             my_punch_button_controller.UpdateFillAmount(amount);
         }
 

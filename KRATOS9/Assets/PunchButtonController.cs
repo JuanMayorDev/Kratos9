@@ -22,7 +22,6 @@ public class PunchButtonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void UpdateFillAmount(float amount)

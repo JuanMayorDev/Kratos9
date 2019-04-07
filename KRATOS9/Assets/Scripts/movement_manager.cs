@@ -30,7 +30,7 @@ namespace Kratos9 {
         public float rotation_speed;
 
         public Transform direction_shadow;
-
+        Vector3 start_pos;
 
         // Start is called before the first frame update
         void Start()
@@ -39,6 +39,7 @@ namespace Kratos9 {
             my_anim = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
             director_speed = ship_transform.forward * base_speed;
             this_punch_manager = GetComponent<punch_manager>();
+            start_pos = transform.position;
         }
 
         // Update is called once per frame
@@ -120,6 +121,10 @@ namespace Kratos9 {
             director_speed += _v;
         }
 
-       
+       public void RestorePositions()
+        {
+            ship_transform.position = start_pos;
+            director_speed = Vector3.zero;
+        }
     }
 }

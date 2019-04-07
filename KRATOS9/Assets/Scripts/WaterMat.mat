@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _IslandMask:
-        m_Texture: {fileID: 10307, guid: 0000000000000000f000000000000000, type: 0}
+        m_Texture: {fileID: 2800000, guid: 3a2b750d0ac175f4db3ce1b5e9bfd02f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -64,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _WaveNormal:
-        m_Texture: {fileID: 2800000, guid: 0676905db3e239b46af2c6aa193c3397, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8e5c72b68577956469dfca4ef1b85a23, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -87,20 +87,20 @@ Material:
     - _SpecularPower: 0.62
     - _SrcBlend: 1
     - _UVSec: 0
-    - _WaterContrast: 0.36
+    - _WaterContrast: 0.38
     - _WaterDepth: 1
-    - _WaterSpeed: 0.01
+    - _WaterSpeed: 0.35
     - _WaterTile: 2.5
     - _WaveHeight: 0
-    - _WaveSpeed: 0.112
+    - _WaveSpeed: 0.3
     - _WaveTile1: 400
     - _WaveTile2: 400
-    - _WaveWind: 0.306
+    - _WaveWind: 0.19
     - _ZWrite: 1
     m_Colors:
-    - _CoastColor: {r: 0.81501424, g: 0.92444646, b: 0.9339623, a: 1}
-    - _CoastDepth: {r: 0.0039215703, g: 0.6039216, b: 0.5644695, a: 1}
+    - _CoastColor: {r: 0.1496529, g: 0.4464506, b: 0.5377358, a: 1}
+    - _CoastDepth: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OceanColor: {r: 0.509434, g: 0.3544328, b: 0.20906019, a: 1}
-    - _OceanDepth: {r: 0, g: 0.44313717, b: 1, a: 1}
+    - _OceanColor: {r: 0.3773585, g: 0.32095352, b: 0.26877892, a: 1}
+    - _OceanDepth: {r: 1, g: 1, b: 1, a: 1}

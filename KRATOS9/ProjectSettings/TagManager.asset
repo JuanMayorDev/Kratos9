@@ -5,7 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wind
-  - Boat1
+  - Death
+  - Enviroment
+  - Boat
   layers:
   - Default
   - TransparentFX
