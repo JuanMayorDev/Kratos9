@@ -29,6 +29,8 @@ namespace Kratos9 {
 
         public float rotation_speed;
 
+        public Transform direction_shadow;
+
 
         // Start is called before the first frame update
         void Start()
@@ -56,7 +58,8 @@ namespace Kratos9 {
                 director_speed = Vector3.ClampMagnitude(director_speed, max_director_speed_magnitude);
             }
             ship_transform.rotation = Quaternion.Lerp(ship_transform.rotation, desired_rotation, Time.deltaTime * rotation_speed);
-            
+
+            direction_shadow.forward = Vector3.Lerp(direction_shadow.forward, director_speed, Time.deltaTime);
         }
 
         public void RotateShip(SideToRotate _s, float angles)
@@ -79,7 +82,7 @@ namespace Kratos9 {
                     desired_rotation.eulerAngles = new Vector3(ship_transform.eulerAngles.x, ship_transform.eulerAngles.y + angles, ship_transform.eulerAngles.z);
 
 
-                    ship_transform.eulerAngles = new Vector3(ship_transform.eulerAngles.x, ship_transform.eulerAngles.y - angles, ship_transform.eulerAngles.z);
+                    //ship_transform.eulerAngles = new Vector3(ship_transform.eulerAngles.x, ship_transform.eulerAngles.y - angles, ship_transform.eulerAngles.z);
                     break;
 
               
