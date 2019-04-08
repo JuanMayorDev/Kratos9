@@ -84,23 +84,23 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularGloss: 0.5
     - _SpecularHighlights: 1
-    - _SpecularPower: 0.62
+    - _SpecularPower: 0
     - _SrcBlend: 1
     - _UVSec: 0
-    - _WaterContrast: 0.38
+    - _WaterContrast: 0.75
     - _WaterDepth: 1
     - _WaterSpeed: 0.35
     - _WaterTile: 2.5
-    - _WaveHeight: 0
-    - _WaveSpeed: 0.3
+    - _WaveHeight: 50
+    - _WaveSpeed: 0.28
     - _WaveTile1: 400
     - _WaveTile2: 400
-    - _WaveWind: 0.19
+    - _WaveWind: 0.33
     - _ZWrite: 1
     m_Colors:
-    - _CoastColor: {r: 0.1496529, g: 0.4464506, b: 0.5377358, a: 1}
-    - _CoastDepth: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
+    - _CoastColor: {r: 0.24359204, g: 0.38973486, b: 0.4339623, a: 1}
+    - _CoastDepth: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OceanColor: {r: 0.3773585, g: 0.32095352, b: 0.26877892, a: 1}
-    - _OceanDepth: {r: 1, g: 1, b: 1, a: 1}
+    - _OceanColor: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
+    - _OceanDepth: {r: 0, g: 0, b: 0, a: 1}
